@@ -229,14 +229,14 @@ public class Chess extends JApplet {
 	  
 	  if(x+1 <= 7 && y+1 <=7 && board[y+1][x+1] < 0 && board[y+1][x+1] >=-6 ){
 		  System.out.println(y+" " + x);
-		  posList.add(y+ " " + x);
+		  posList.add((y+1)+ " " + (x+1));
 	  }
-	  if(y+1 <=7 && board[y+1][x-1] < 0 && board[y+1][x-1] >=-6 ){
-		  posList.add(y+ " " + x);
+	  if(y > 0 && x > 0 && y+1 <=7 && board[y+1][x-1] < 0 && board[y+1][x-1] >=-6 ){
+		  posList.add((y+1)+ " " + (x-1));
 		  System.out.println(y+" " + x);
 		  }
-	  if(x < 7 && y+1 <=7 && board[y+1][x] == 0){
-		  posList.add((y+1)+ " " + x);
+	  if(x <= 7 && y <=7 && board[y+1][x] == 0){
+		  posList.add((y+1)+ " " + (x));
 		  System.out.println("FRONT OF: " + (y+1)+" " + x);
 		  }
 	  
@@ -358,6 +358,8 @@ public class Chess extends JApplet {
    
    selectedPiece =-5;
    posList.clear();
+   x=-1;
+   y=-1;
    
    for(int j = 0; j < 8; j++) {
        for(int k = 0; k < 8; k++) {
