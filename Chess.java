@@ -391,7 +391,7 @@ public class Chess extends JApplet {
 	  int newX = x+1;
 	  int newY = y+1;
 	  while(newX <= 7 && newY <= 7 && board[newY][newX] >= 0 && board[newY][newX] <= 6 ) {
-		  System.out.println("1Adding (" + newY + "  " + newX + ")" );
+		 // System.out.println("1Adding (" + newY + "  " + newX + ")" );
 		  posList.add(newY + " " + newX);
 		  if(board[newY][newX]!= 0)
 				break;
@@ -402,7 +402,7 @@ public class Chess extends JApplet {
 	  newX = x-1;
 	  newY = y+1;
 	  while(newX >= 0 && newY <= 7 && board[newY][newX] >= 0 && board[newY][newX] <= 6) {
-		  System.out.println("2Adding (" + newY + "  " + newX + ")" );
+		//  System.out.println("2Adding (" + newY + "  " + newX + ")" );
 		  posList.add(newY + " " + newX);
 		  if(board[newY][newX]!= 0)
 				break;
@@ -413,7 +413,7 @@ public class Chess extends JApplet {
 	  newX = x+1;
 	  newY = y-1;
 	  while(newX <= 7 && newY >= 0 && board[newY][newX] >= 0 && board[newY][newX] <= 6 ) {
-		  System.out.println("3Adding (" + newY + "  " + newX + ")" );
+		 // System.out.println("3Adding (" + newY + "  " + newX + ")" );
 		  posList.add(newY + " " + newX);
 		  if(board[newY][newX]!= 0)
 				break;
@@ -424,7 +424,7 @@ public class Chess extends JApplet {
 	  newX = x-1;
 	  newY = y-1;
 	  while(newX >= 0 && newY >= 0 && board[newY][newX] >= 0  && board[newY][newX] <= 6) {
-		  System.out.println("4Adding (" + newY + "  " + newX + ")" );
+		//  System.out.println("Adding (" + newY + "  " + newX + ")" );
 		  posList.add(newY + " " + newX);
 			if(board[newY][newX]!= 0)
 				break;
@@ -440,11 +440,314 @@ public class Chess extends JApplet {
 	  selectedPiece = 4;
 	  int newX = x;
 	  int newY = y+1;
+	  while(newY <= 7 && board[newY][newX] <= 0 && board[newY][newX] >= -6) {
+		  posList.add(newY + " " + newX);
+		  if(board[newY][newX]!= 0)
+				break;
+		  newY++;
+	  }
+	   newX = x;
+	   newY = y-1;
+	   while(newY >= 0 && board[newY][newX] <= 0 && board[newY][newX] >=-6) {
+		   posList.add(newY + " " + newX);
+			  if(board[newY][newX]!= 0)
+					break;
+			  newY--;
+	   }
+	   newX = x+1;
+	   newY = y;
+	   while(newX <= 7 && board[newY][newX] <= 0 && board[newY][newX] >= -6) {
+			posList.add(newY + " " + newX);
+			if(board[newY][newX]!= 0)
+					break;
+			 newX++;
+	   }
+	   newX = x-1;
+	   newY = y;
+	   while(newX >= 0 && board[newY][newX] <= 0 && board[newY][newX] >= -6) {
+			posList.add(newY + " " + newX);
+			if(board[newY][newX]!= 0)
+					break;
+			 newX--;
+	   } 
 	  
-//	  while(newY <= 7 && board[newY][newX] <= 0 && board[newY][newX] >= -6)
+  }//end +Rook
+  else if(board[y][x] == -4) {
+	  System.out.println("Picked a -Rook");
+	  selectedPiece = -4;
+	  int newX = x;
+	  int newY = y+1;
+	  while(newY <= 7 && board[newY][newX] >= 0 && board[newY][newX] <= 6) {
+		  posList.add(newY + " " + newX);
+		  if(board[newY][newX]!= 0)
+				break;
+		  newY++;
+	  }
+	   newX = x;
+	   newY = y-1;
+	   while(newY >= 0 && board[newY][newX] >= 0 && board[newY][newX] <= 6) {
+		   posList.add(newY + " " + newX);
+			  if(board[newY][newX]!= 0)
+					break;
+			  newY--;
+	   }
+	   newX = x+1;
+	   newY = y;
+	   while(newX <= 7 && board[newY][newX] >= 0 && board[newY][newX] <= 6) {
+			posList.add(newY + " " + newX);
+			if(board[newY][newX]!= 0)
+					break;
+			 newX++;
+	   }
+	   newX = x-1;
+	   newY = y;
+	   while(newX >= 0 && board[newY][newX] >= 0 && board[newY][newX] <= 6) {
+			posList.add(newY + " " + newX);
+			if(board[newY][newX]!= 0)
+					break;
+			 newX--;
+	   } 
+	  
+  }//end -Rook
+  else if(board[y][x] == 5) {
+	  System.out.println("Picked a Queen");
+	  selectedPiece = 5;
+	  
+	  //Rook-like moves first
+	  int newX = x;
+	  int newY = y+1;
+	  while(newY <= 7 && board[newY][newX] <= 0 && board[newY][newX] >= -6) {
+		  posList.add(newY + " " + newX);
+		  if(board[newY][newX]!= 0)
+				break;
+		  newY++;
+	  }
+	   newX = x;
+	   newY = y-1;
+	   while(newY >= 0 && board[newY][newX] <= 0 && board[newY][newX] >=-6) {
+		   posList.add(newY + " " + newX);
+			  if(board[newY][newX]!= 0)
+					break;
+			  newY--;
+	   }
+	   newX = x+1;
+	   newY = y;
+	   while(newX <= 7 && board[newY][newX] <= 0 && board[newY][newX] >= -6) {
+			posList.add(newY + " " + newX);
+			if(board[newY][newX]!= 0)
+					break;
+			 newX++;
+	   }
+	   newX = x-1;
+	   newY = y;
+	   while(newX >= 0 && board[newY][newX] <= 0 && board[newY][newX] >= -6) {
+			posList.add(newY + " " + newX);
+			if(board[newY][newX]!= 0)
+					break;
+			 newX--;
+	   } 
+	   
+	   //Bishop-like moves next
+		   newX = x+1;
+		   newY = y+1;
+		  while(newX <= 7 && newY <= 7 && board[newY][newX] <= 0 && board[newY][newX] >= -6 ) {
+			  posList.add(newY + " " + newX);
+			  if(board[newY][newX]!= 0)
+					break;
+			  newY++;
+			  newX++;
+		  }
+		  newX = x-1;
+		  newY = y+1;
+		  while(newX >= 0 && newY <= 7 && board[newY][newX] <= 0 && board[newY][newX] >= -6) {
+			  posList.add(newY + " " + newX);
+			  if(board[newY][newX]!= 0)
+					break;
+			  newY++;
+			  newX--;
+		  }
+		  newX = x+1;
+		  newY = y-1;
+		  while(newX <= 7 && newY >= 0 && board[newY][newX] <= 0 && board[newY][newX] >= -6 ) {
+			  posList.add(newY + " " + newX);
+			  if(board[newY][newX]!= 0)
+					break;
+			  newY--;
+			  newX++;
+		  }
+		  newX = x-1;
+		  newY = y-1;
+		  while(newX >= 0 && newY >= 0 && board[newY][newX] <= 0  && board[newY][newX] >= -6) {
+			  posList.add(newY + " " + newX);
+			  if(board[newY][newX]!= 0)
+					break;
+			  newY--;
+			  newX--;
+		  }
+	   
+	  
+  }//end +Queen
+  else if(board[y][x] == -5 ) {
+	  System.out.println("Picked a -Queen");
+	  selectedPiece = -5;
+	  
+	  //Rook-like moves first
+	  int newX = x;
+	  int newY = y+1;
+	  while(newY <= 7 && board[newY][newX] >= 0 && board[newY][newX] <= 6) {
+		  posList.add(newY + " " + newX);
+		  if(board[newY][newX]!= 0)
+				break;
+		  newY++;
+	  }
+	   newX = x;
+	   newY = y-1;
+	   while(newY >= 0 && board[newY][newX] >= 0 && board[newY][newX] <= 6) {
+		   posList.add(newY + " " + newX);
+			  if(board[newY][newX]!= 0)
+					break;
+			  newY--;
+	   }
+	   newX = x+1;
+	   newY = y;
+	   while(newX <= 7 && board[newY][newX] >= 0 && board[newY][newX] <= 6) {
+			posList.add(newY + " " + newX);
+			if(board[newY][newX]!= 0)
+					break;
+			 newX++;
+	   }
+	   newX = x-1;
+	   newY = y;
+	   while(newX >= 0 && board[newY][newX] >= 0 && board[newY][newX] <= 6) {
+			posList.add(newY + " " + newX);
+			if(board[newY][newX]!= 0)
+					break;
+			 newX--;
+	   } 
+	   
+	   //Then Bishop
+		  newX = x+1;
+		  newY = y+1;
+		  while(newX <= 7 && newY <= 7 && board[newY][newX] >= 0 && board[newY][newX] <= 6 ) {
+			 // System.out.println("1Adding (" + newY + "  " + newX + ")" );
+			  posList.add(newY + " " + newX);
+			  if(board[newY][newX]!= 0)
+					break;
+			  newY++;
+			  newX++;
+			 
+		  }
+		  newX = x-1;
+		  newY = y+1;
+		  while(newX >= 0 && newY <= 7 && board[newY][newX] >= 0 && board[newY][newX] <= 6) {
+			//  System.out.println("2Adding (" + newY + "  " + newX + ")" );
+			  posList.add(newY + " " + newX);
+			  if(board[newY][newX]!= 0)
+					break;
+		  
+			  newY++;
+			  newX--;
+		  }
+		  newX = x+1;
+		  newY = y-1;
+		  while(newX <= 7 && newY >= 0 && board[newY][newX] >= 0 && board[newY][newX] <= 6 ) {
+			 // System.out.println("3Adding (" + newY + "  " + newX + ")" );
+			  posList.add(newY + " " + newX);
+			  if(board[newY][newX]!= 0)
+					break;
+			  newY--;
+			  newX++;
+			
+		  }
+		  newX = x-1;
+		  newY = y-1;
+		  while(newX >= 0 && newY >= 0 && board[newY][newX] >= 0  && board[newY][newX] <= 6) {
+			//  System.out.println("Adding (" + newY + "  " + newX + ")" );
+			  posList.add(newY + " " + newX);
+				if(board[newY][newX]!= 0)
+					break;
+			  newY--;
+			  newX--;
+			
+		  }
 	  
 	  
-  }
+  }//end -Queen
+  else if(board[y][x] == 6) {
+	  System.out.println("Picked the King");
+	  selectedPiece = 6;
+	  
+	  //Right Side
+	  if(y-1 >= 0 && x+1 <= 7 && board[y-1][x+1] <= 0 && board[y-1][x+1] >= -6) {
+		  posList.add((y-1) + " " + (x+1));
+	  }
+	  if(x+1 <= 7 && board[y][x+1] <= 0 && board[y][x+1] >= -6) {
+		  posList.add((y) + " " + (x+1));
+		  
+	  }
+	  if(x+1 <= 7 && y+1 <=7 && board[y+1][x+1] <= 0 && board[y+1][x+1] >=-6 ){
+		  posList.add((y+1)+ " " + (x+1));
+	  }
+	  
+	  //Left side
+	  if(x-1 >= 0 && y-1 >= 0 && board[y-1][x-1] <= 0 && board[y-1][x-1] >= -6 ) {
+		  posList.add((y-1) + " " + (x-1));
+	  }
+	  if(x-1 >= 0 && board[y][x-1] <= 0 && board[y][x-1] >= -6) {
+		  posList.add((y) + " " + (x-1));
+	  }
+	  
+	  if(x-1 >= 0 && y+1 <=7 && board[y+1][x-1] <= 0 && board[y+1][x-1] >=-6 ){
+		  posList.add((y+1)+ " " + (x-1));
+	}
+	  
+	 //Front and Back
+	  if(x <= 7 && y+1 <=7 && board[y+1][x] <= 0 && board[y+1][x] >= -6){
+		  posList.add((y+1)+ " " + (x));
+		  }
+	  if(x <= 7 && y-1 >= 0 && board[y-1][x] <= 0 && board[y-1][x] >= -6){
+		  posList.add((y-1)+ " " + (x));
+	  }
+	  
+	  
+  }//end +King
+  else if(board[y][x] == -6) {
+	  System.out.println("Picked the King");
+	  selectedPiece = -6;
+	  
+	  //Right Side
+	  if(y-1 >= 0 && x+1 <= 7 && board[y-1][x+1] >= 0 && board[y-1][x+1] <= 6) {
+		  posList.add((y-1) + " " + (x+1));
+	  }
+	  if(x+1 <= 7 && board[y][x+1] >= 0 && board[y][x+1] <= 6) {
+		  posList.add((y) + " " + (x+1));
+		  
+	  }
+	  if(x+1 <= 7 && y+1 <=7 && board[y+1][x+1] >= 0 && board[y+1][x+1] <=6 ){
+		  posList.add((y+1)+ " " + (x+1));
+	  }
+	  
+	  //Left side
+	  if(x-1 >= 0 && y-1 >= 0 && board[y-1][x-1] >= 0 && board[y-1][x-1] <= 6 ) {
+		  posList.add((y-1) + " " + (x-1));
+	  }
+	  if(x-1 >= 0 && board[y][x-1] >= 0 && board[y][x-1] <= 6) {
+		  posList.add((y) + " " + (x-1));
+	  }
+	  
+	  if(x-1 >= 0 && y+1 <=7 && board[y+1][x-1] >= 0 && board[y+1][x-1] <=6 ){
+		  posList.add((y+1)+ " " + (x-1));
+	}
+	  
+	 //Front and Back
+	  if(x <= 7 && y+1 <=7 && board[y+1][x] >= 0 && board[y+1][x] <= 6){
+		  posList.add((y+1)+ " " + (x));
+		  }
+	  if(x <= 7 && y-1 >= 0 && board[y-1][x] >= 0 && board[y-1][x] <= 6){
+		  posList.add((y-1)+ " " + (x));
+	  }
+	  
+  }//end -King
   
   }//end bothlegal
  
