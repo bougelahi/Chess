@@ -74,6 +74,8 @@ public class Chess extends JApplet {
         //Add Kings, KINGS = 6;
         board[0][3] = 6;
         board[7][3] = -6;
+        
+        move = 1;
     }
 
         public void paint(Graphics g) {
@@ -85,10 +87,45 @@ public class Chess extends JApplet {
         g.setColor(Color.BLACK);
 
         
-        move = 1;
+     
         for(int i =0;i<9;i++) {
             g.drawLine((35*i)+50, 50, (35*i)+50, 330);
             g.drawLine(50, (35*i)+50, 330, (35*i)+50);
+        }
+        
+        for(int j = 0; j < 8; j++) {
+        	for(int k = 0; k < 8; k++) {
+        		g.setColor(Color.BLACK);
+        		if(board[j][k] == 1 || board[j][k] == -1) {
+        			g.fillRect(35*k + 55, 35*j+55, 10,10);
+        		}
+        		
+        		if(board[j][k] == 2 || board[j][k] == -2) {
+        			g.setColor(Color.RED);
+        			g.fillRect(35*k + 55, 35*j+55, 20,20);
+        		}
+        		
+        		if(board[j][k] == 3 || board[j][k] == -3) {
+        			g.setColor(Color.BLUE);
+        			g.fillRect(35*k + 55, 35*j+55, 20,20);
+        		}
+        		
+        		if(board[j][k] == 4 || board[j][k] == -4 ) {
+        			g.setColor(Color.GREEN);
+        			g.fillRect(35*k + 55, 35*j+55, 15,15);
+        		}
+        		
+        		if(board[j][k] == 5 || board[j][k] == -5) {
+        			g.setColor(Color.GRAY);
+        			g.fillOval(35*k + 55, 35*j+55, 15, 15);
+        		}
+        		
+        		if(board[j][k] == 6 || board[j][k] == -6) {
+        			g.setColor(Color.YELLOW);
+        			g.fillOval(35*k + 55, 35*j+55, 25, 25);
+        		}
+        		
+        	}
         }
 
         
@@ -230,16 +267,16 @@ public class Chess extends JApplet {
 	  
 	  
 	  if(x+1 <= 7 && y+1 <=7 && board[y+1][x+1] < 0 && board[y+1][x+1] >=-6 ){
-		 // System.out.println(y+" " + x);
+		  System.out.println(y+" " + x);
 		  posList.add((y+1)+ " " + (x+1));
 	  }
 	  if(y > 0 && x > 0 && y+1 <=7 && board[y+1][x-1] < 0 && board[y+1][x-1] >=-6 ){
 		 posList.add((y+1)+ " " + (x-1));
-		  //System.out.println(y+" " + x);
+		  System.out.println(y+" " + x);
 		  }
 	  if(x <= 7 && y <=7 && board[y+1][x] == 0){
 		  posList.add((y+1)+ " " + (x));
-		 // System.out.println("FRONT OF: " + (y+1)+" " + x);
+		  System.out.println("FRONT OF: " + (y+1)+" " + x);
 		  }
 	  
 	  
@@ -837,7 +874,7 @@ public class Chess extends JApplet {
 		   board[Integer.parseInt(previous[0])][Integer.parseInt(previous[1])] = 0;
 		   previousPos = "";
 		   move*=-1;
-		   
+		   repaint();
 		   if(move == 1) {
 			   System.out.println("Positive turn!");
 		   }
