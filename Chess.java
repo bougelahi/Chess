@@ -214,13 +214,27 @@ public class Chess extends JApplet {
 	  }
 	  
   }
-  if(bothlegal)
+  if(bothlegal ){
   System.out.println(space);
   System.out.println(board[y][x]);
   previousPos = y + " " + x;
   if(board[y][x] == -1 ) { 
 	  System.out.println("Picked a -Pawn");
 	  selectedPiece = -1;
+	  
+	  if(x-1 >= 0 && y-1 >= 0 && board[y-1][x-1] > 0 && board[y-1][x-1] <= 6 ){
+		  System.out.println((y-1)+" " + (x-1));
+		  posList.add((y-1)+ " " + (x-1));
+	  }
+	  if(y < 7 && x+1 <= 7 && y-1 >=0 && board[y-1][x+1] > 0 && board[y-1][x+1] <=6 ){
+		  posList.add((y-1)+ " " + (x+1));
+		  System.out.println((y-1)+" " + (x+1));
+		  }
+	  if(x >= 0 && y-1 >=0 && board[y-1][x] == 0){
+		  posList.add((y-1)+ " " + (x));
+		  System.out.println("FRONT OF: " + (y-1)+" " + x);
+		  }
+	  
   }
   else if(board[y][x] == 1) {
 	  System.out.println("Picked a Pawn");
@@ -242,12 +256,203 @@ public class Chess extends JApplet {
 	  
 	  
 	  
+  }//end +Pawn
+  else if(board[y][x] == 2) {
+	  System.out.println("Picked a Knight");
+	  selectedPiece = 2;
+	  
+	  //Forward
+	  if(y+2 <= 7 && x-1 >=0 && board[y+2][x-1] <=0 && board[y+2][x-1] >= -6) {
+		  posList.add((y+2) + " " + (x-1));
+	  }
+	  
+	  if(y+2 <= 7 && x+1 <= 7 && board[y+2][x+1] <=0 && board[y+2][x+1] >= -6) {
+		  posList.add((y+2) + " " + (x+1));
+	  }
+	  
+	  //Sides
+	  if(x-2 >= 0 && y+1 <= 7 && board[y+1][x-2] <=0 && board[y+1][x-2] >= -6) {
+		  posList.add((y+1) + " " + (x-2));
+	  }
+	  
+	  if(x+2 <= 7 && y+1 <=7 && board[y+1][x+2] <=0 && board[y+1][x+2] >= -6) {
+		  posList.add((y+1) + " " + (x+2));
+	  }
+	  
+	  if(x-2 >= 0 && y-1 >= 0 && board[y-1][x-2] <=0 && board[y-1][x-2] >= -6) {
+		  posList.add((y-1) + " " + (x-2));
+	  }
+	  
+	  if(x+2 <= 7 && y-1 >= 0 && board[y-1][x+2] <=0 && board[y-1][x+2] >= -6) {
+		  posList.add((y-1) + " " + (x+2));
+	  }
+
+	  
+	  //Backward
+	  if(y-2 >= 0 && x-1 >=0 && board[y-2][x-1] <=0 && board[y-2][x-1] >= -6) {
+		  posList.add((y-2) + " " + (x-1));
+	  }
+	  
+	  if(y-2 >= 0 && x+1 <= 7 && board[y-2][x+1] <=0 && board[y-2][x+1] >= -6) {
+		  posList.add((y-2) + " " + (x+1));
+	  }
+  }//end +Knight
+  else if(board[y][x] == -2) {
+	  
+	  System.out.println("Picked a -Knight");
+	  selectedPiece = -2;
+	  
+	  //Forward
+	  if(y+2 <= 7 && x-1 >=0 && board[y+2][x-1] >=0 && board[y+2][x-1] <= 6) {
+		  posList.add((y+2) + " " + (x-1));
+	  }
+	  
+	  if(y+2 <= 7 && x+1 <= 7 && board[y+2][x+1] >=0 && board[y+2][x+1] <= 6) {
+		  posList.add((y+2) + " " + (x+1));
+	  }
+	  
+	  //Sides
+	  if(x-2 >= 0 && y+1 <= 7 && board[y+1][x-2] >=0 && board[y+1][x-2] <= 6) {
+		  posList.add((y+1) + " " + (x-2));
+	  }
+	  
+	  if(x+2 <= 7 && y+1 <=7 && board[y+1][x+2] >=0 && board[y+1][x+2] <= 6) {
+		  posList.add((y+1) + " " + (x+2));
+	  }
+	  
+	  if(x-2 >= 0 && y-1 >= 0 && board[y-1][x-2] >=0 && board[y-1][x-2] <= 6) {
+		  posList.add((y-1) + " " + (x-2));
+	  }
+	  
+	  if(x+2 <= 7 && y-1 >= 0 && board[y-1][x+2] >=0 && board[y-1][x+2] <= 6) {
+		  posList.add((y-1) + " " + (x+2));
+	  }
+
+	  
+	  //Backward
+	  if(y-2 >= 0 && x-1 >=0 && board[y-2][x-1] >=0 && board[y-2][x-1] <= 6) {
+		  posList.add((y-2) + " " + (x-1));
+	  }
+	  
+	  if(y-2 >= 0 && x+1 <= 7 && board[y-2][x+1] >=0 && board[y-2][x+1] <= 6) {
+		  posList.add((y-2) + " " + (x+1));
+	  }
+	  
+  
+  
+  }//end -Knight
+  else if(board[y][x] == 3) {
+	  System.out.println("Picked a Bishop");
+	  selectedPiece = 3;
+	  int newX = x+1;
+	  int newY = y+1;
+	  while(newX <= 7 && newY <= 7 && board[newY][newX] <= 0 && board[newY][newX] >= -6 ) {
+		  posList.add(newY + " " + newX);
+		  if(board[newY][newX]!= 0)
+				break;
+		  newY++;
+		  newX++;
+	  }
+	  newX = x-1;
+	  newY = y+1;
+	  while(newX >= 0 && newY <= 7 && board[newY][newX] <= 0 && board[newY][newX] >= -6) {
+		  posList.add(newY + " " + newX);
+		  if(board[newY][newX]!= 0)
+				break;
+		  newY++;
+		  newX--;
+	  }
+	  newX = x+1;
+	  newY = y-1;
+	  while(newX <= 7 && newY >= 0 && board[newY][newX] <= 0 && board[newY][newX] >= -6 ) {
+		  posList.add(newY + " " + newX);
+		  if(board[newY][newX]!= 0)
+				break;
+		  newY--;
+		  newX++;
+	  }
+	  newX = x-1;
+	  newY = y-1;
+	  while(newX >= 0 && newY >= 0 && board[newY][newX] <= 0  && board[newY][newX] >= -6) {
+		  posList.add(newY + " " + newX);
+		  if(board[newY][newX]!= 0)
+				break;
+		  newY--;
+		  newX--;
+	  }
+	  
+	  
+	  
+	  
+  }//end +Bishop
+  else if(board[y][x] == -3) {
+	  System.out.println("Picked a -Bishop");
+	  selectedPiece = -3;
+	  int newX = x+1;
+	  int newY = y+1;
+	  while(newX <= 7 && newY <= 7 && board[newY][newX] >= 0 && board[newY][newX] <= 6 ) {
+		  System.out.println("1Adding (" + newY + "  " + newX + ")" );
+		  posList.add(newY + " " + newX);
+		  if(board[newY][newX]!= 0)
+				break;
+		  newY++;
+		  newX++;
+		 
+	  }
+	  newX = x-1;
+	  newY = y+1;
+	  while(newX >= 0 && newY <= 7 && board[newY][newX] >= 0 && board[newY][newX] <= 6) {
+		  System.out.println("2Adding (" + newY + "  " + newX + ")" );
+		  posList.add(newY + " " + newX);
+		  if(board[newY][newX]!= 0)
+				break;
+	  
+		  newY++;
+		  newX--;
+	  }
+	  newX = x+1;
+	  newY = y-1;
+	  while(newX <= 7 && newY >= 0 && board[newY][newX] >= 0 && board[newY][newX] <= 6 ) {
+		  System.out.println("3Adding (" + newY + "  " + newX + ")" );
+		  posList.add(newY + " " + newX);
+		  if(board[newY][newX]!= 0)
+				break;
+		  newY--;
+		  newX++;
+		
+	  }
+	  newX = x-1;
+	  newY = y-1;
+	  while(newX >= 0 && newY >= 0 && board[newY][newX] >= 0  && board[newY][newX] <= 6) {
+		  System.out.println("4Adding (" + newY + "  " + newX + ")" );
+		  posList.add(newY + " " + newX);
+			if(board[newY][newX]!= 0)
+				break;
+		  newY--;
+		  newX--;
+		
+	  }
+	  
+	  
+  }//end -Bishop
+  else if(board[y][x] == 4) {
+	  System.out.println("Picked a Rook");
+	  selectedPiece = 4;
+	  int newX = x;
+	  int newY = y+1;
+	  
+//	  while(newY <= 7 && board[newY][newX] <= 0 && board[newY][newX] >= -6)
+	  
+	  
   }
   
+  }//end bothlegal
+ 
  }
 
  @Override
  public void mouseReleased(MouseEvent e) {
+	 System.out.println("RELEASED");
   boolean bothlegal = false;
   String space = "";
   int x = -1;
@@ -340,6 +545,8 @@ public class Chess extends JApplet {
   }
   else {
    bothlegal = false;
+   x=1;
+   y=1;
   }
   
   }
@@ -351,8 +558,10 @@ public class Chess extends JApplet {
 	   if((y+" " + x).equals(posList.get(i))) {
 		   board[y][x] = selectedPiece;
 		   String[] previous = previousPos.split(" ");
+		   if(Integer.parseInt(previous[0]) >= 0 && Integer.parseInt(previous[0] ) <=7 && Integer.parseInt(previous[1]) >= 0 && Integer.parseInt(previous[1] ) <=7)
 		   board[Integer.parseInt(previous[0])][Integer.parseInt(previous[1])] = 0;
 		   previousPos = "";
+		   break;
 	   }
    }
    
