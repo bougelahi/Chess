@@ -23,6 +23,7 @@ public class Chess extends JApplet {
  int[][] board = new int[8][8];
  private int selectedPiece = -1;
  String previousPos = "1 1";
+ int move = -1;
  ArrayList<String> posList= new ArrayList<>();
     //method that is auto called
     public void init() {
@@ -42,7 +43,7 @@ public class Chess extends JApplet {
          }
          System.out.println();
         }
-  
+        
 
 
     }
@@ -78,12 +79,13 @@ public class Chess extends JApplet {
         public void paint(Graphics g) {
         //clear old stuff
 
-        g.setColor(Color.GRAY);
+        g.setColor(Color.WHITE);
         g.fillRect(0, 0, 800, 800);
 
         g.setColor(Color.BLACK);
 
-
+        
+        move = 1;
         for(int i =0;i<9;i++) {
             g.drawLine((35*i)+50, 50, (35*i)+50, 330);
             g.drawLine(50, (35*i)+50, 330, (35*i)+50);
@@ -121,8 +123,10 @@ public class Chess extends JApplet {
 	  int y = -1;
 	  String space ="";
 	  previousPos = "";
-	  selectedPiece =-5;
+	  selectedPiece =-7;
+	  
 	  boolean bothlegal = false;
+	  
 	  if(e.getX() > 50 && e.getX() <=85) {
 	   space +=("A");
 	   bothlegal = true;
@@ -218,7 +222,7 @@ public class Chess extends JApplet {
   System.out.println(space);
   System.out.println(board[y][x]);
   previousPos = y + " " + x;
-  if(board[y][x] == -1 ) { 
+  if(board[y][x] == -1  && move == -1) { 
 	  System.out.println("Picked a -Pawn");
 	  selectedPiece = -1;
 	  
@@ -236,7 +240,7 @@ public class Chess extends JApplet {
 		  }
 	  
   }
-  else if(board[y][x] == 1) {
+  else if(board[y][x] == 1 && move == 1) {
 	  System.out.println("Picked a Pawn");
 	  selectedPiece =  1;
 	  
@@ -257,7 +261,7 @@ public class Chess extends JApplet {
 	  
 	  
   }//end +Pawn
-  else if(board[y][x] == 2) {
+  else if(board[y][x] == 2 && move == 1) {
 	  System.out.println("Picked a Knight");
 	  selectedPiece = 2;
 	  
@@ -297,7 +301,7 @@ public class Chess extends JApplet {
 		  posList.add((y-2) + " " + (x+1));
 	  }
   }//end +Knight
-  else if(board[y][x] == -2) {
+  else if(board[y][x] == -2 && move == -1) {
 	  
 	  System.out.println("Picked a -Knight");
 	  selectedPiece = -2;
@@ -341,7 +345,7 @@ public class Chess extends JApplet {
   
   
   }//end -Knight
-  else if(board[y][x] == 3) {
+  else if(board[y][x] == 3 && move == 1) {
 	  System.out.println("Picked a Bishop");
 	  selectedPiece = 3;
 	  int newX = x+1;
@@ -385,7 +389,7 @@ public class Chess extends JApplet {
 	  
 	  
   }//end +Bishop
-  else if(board[y][x] == -3) {
+  else if(board[y][x] == -3 && move == -1) {
 	  System.out.println("Picked a -Bishop");
 	  selectedPiece = -3;
 	  int newX = x+1;
@@ -435,7 +439,7 @@ public class Chess extends JApplet {
 	  
 	  
   }//end -Bishop
-  else if(board[y][x] == 4) {
+  else if(board[y][x] == 4 && move == 1) {
 	  System.out.println("Picked a Rook");
 	  selectedPiece = 4;
 	  int newX = x;
@@ -472,7 +476,7 @@ public class Chess extends JApplet {
 	   } 
 	  
   }//end +Rook
-  else if(board[y][x] == -4) {
+  else if(board[y][x] == -4 && move == -1) {
 	  System.out.println("Picked a -Rook");
 	  selectedPiece = -4;
 	  int newX = x;
@@ -509,7 +513,7 @@ public class Chess extends JApplet {
 	   } 
 	  
   }//end -Rook
-  else if(board[y][x] == 5) {
+  else if(board[y][x] == 5 && move == 1) {
 	  System.out.println("Picked a Queen");
 	  selectedPiece = 5;
 	  
@@ -587,7 +591,7 @@ public class Chess extends JApplet {
 	   
 	  
   }//end +Queen
-  else if(board[y][x] == -5 ) {
+  else if(board[y][x] == -5 && move == -1 ) {
 	  System.out.println("Picked a -Queen");
 	  selectedPiece = -5;
 	  
@@ -673,7 +677,7 @@ public class Chess extends JApplet {
 	  
 	  
   }//end -Queen
-  else if(board[y][x] == 6) {
+  else if(board[y][x] == 6 && move == 1) {
 	  System.out.println("Picked the King");
 	  selectedPiece = 6;
 	  
@@ -711,7 +715,7 @@ public class Chess extends JApplet {
 	  
 	  
   }//end +King
-  else if(board[y][x] == -6) {
+  else if(board[y][x] == -6 && move == -1) {
 	  System.out.println("Picked the King");
 	  selectedPiece = -6;
 	  
@@ -864,15 +868,21 @@ public class Chess extends JApplet {
 		   if(Integer.parseInt(previous[0]) >= 0 && Integer.parseInt(previous[0] ) <=7 && Integer.parseInt(previous[1]) >= 0 && Integer.parseInt(previous[1] ) <=7)
 		   board[Integer.parseInt(previous[0])][Integer.parseInt(previous[1])] = 0;
 		   previousPos = "";
+		   move*=-1;
 		   break;
 	   }
    }
    
-   selectedPiece =-5;
+   selectedPiece =-7;
    posList.clear();
    x=-1;
    y=-1;
-   
+   if(move == 1) {
+	   System.out.println("Positive turn!");
+   }
+   else {
+	   System.out.println("Negative turn!");
+   }
    for(int j = 0; j < 8; j++) {
        for(int k = 0; k < 8; k++) {
         System.out.print(board[j][k] +", ");
